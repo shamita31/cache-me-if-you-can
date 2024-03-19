@@ -6,7 +6,8 @@ This interactive tutorial will guide you through the process of making a pull re
 
 1. **Fork this repository** to your GitHub account by clicking the "Fork" button in the top-right corner of the repository page.
 
-![Forking a Repository](https://i.imgur.com/G1NYhhx.png)
+![Forking a Repository](https://github.com/SharanRP/Xplore/assets/136159249/caaa1619-d5c7-4108-b60b-16de8d26884f)
+
 
 2. **Clone the forked repository** to your local machine:
 
@@ -77,17 +78,19 @@ Then try pushing your changes again.
 9. Visit your forked repository on GitHub.
 10. Switch to the branch you just pushed by clicking on the "Branch" dropdown and selecting your branch.
 
-![Switching Branches](https://i.imgur.com/H2ibus6.png)
+![Switching Branches](https://github.com/SharanRP/Xplore/assets/136159249/f96a022d-721a-433b-9c31-dbaa7d26748f)
+
 
 11. Click on the "New Pull Request" button.
 
-![New Pull Request](https://i.imgur.com/r9fMowS.png)
+![New Pull Request]![image](https://github.com/SharanRP/Xplore/assets/136159249/4f76b5bc-859c-4546-a1c7-af0a528800c5)
+
 
 12. Provide a descriptive title and description for your pull request, explaining the changes you've made and their purpose.
 
 13. Click on the "Create Pull Request" button to submit your pull request.
 
-![Create Pull Request](https://i.imgur.com/zfGZpPQ.png)
+![Create Pull Request]![image](https://github.com/SharanRP/Xplore/assets/136159249/d0c7383e-9dae-436d-af27-f5728ec90e6d)
 
 <hr>
 🎉 Congratulations! You've successfully created a pull request. The project maintainers will review your changes and provide feedback or merge them into the main repository.
@@ -99,4 +102,3 @@ Please add your name and registration number below:
 - Name: [Your Name]
 - Registration Number: [Your Registration Number]
 
-> **Note:** If you encounter any issues or have questions, feel free to ask for help in the project's discussion forum or reach out to the project maintainers.
