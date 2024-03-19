@@ -67,6 +67,7 @@ Replace `your-feature-name` with the name of your branch.
 <hr>
 🚨 **Potential Issue:** If you encounter an error saying `remote origin already exists`, you may need to set the upstream repository by running:
 <hr>
+
 ```bash
 git remote add upstream https://github.com/SharanRP/Xplore.git
 ```
@@ -83,7 +84,7 @@ Then try pushing your changes again.
 
 11. Click on the "New Pull Request" button.
 
-![New Pull Request]![image](https://github.com/SharanRP/Xplore/assets/136159249/4f76b5bc-859c-4546-a1c7-af0a528800c5)
+![New Pull Request](https://github.com/SharanRP/Xplore/assets/136159249/4f76b5bc-859c-4546-a1c7-af0a528800c5)
 
 
 12. Provide a descriptive title and description for your pull request, explaining the changes you've made and their purpose.
