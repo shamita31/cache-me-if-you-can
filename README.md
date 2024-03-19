@@ -9,13 +9,13 @@ This tutorial will guide you through the process of making a pull request to con
 2. Clone the forked repository to your local machine:
 
    ```bash
-   git clone https://github.com/your-username/repository-name.git
+   git clone https://github.com/SharanRP/Xplore.git
    ```
 
 3. Navigate to the project directory:
 
    ```bash
-   cd repository-name
+   cd Xplore
    ```
 
 4. Create a new branch for your changes:
