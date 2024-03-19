@@ -33,6 +33,7 @@ Replace `your-feature-name` with a descriptive name for your feature or change.
 <hr>
 🚨 **Potential Issue:** If you encounter an error saying `fatal: not a git repository`, it means you're not in the correct directory. Navigate to the `Xplore` directory and try again.
 <hr>
+
 ## Making Changes
 
 5. Make your desired changes to the codebase using your favorite code editor.
@@ -55,6 +56,7 @@ Replace `"Add feature xyz"` with a concise description of your changes.
 <hr>
 🚨 **Potential Issue:** If you encounter an error saying `nothing added to commit but untracked files present`, it means you have new files that haven't been staged. Run `git add .` again and then commit your changes.
 <hr>
+
 ## Pushing Changes
 
 8. **Push your changes** to your forked repository:
@@ -91,11 +93,12 @@ Then try pushing your changes again.
 
 13. Click on the "Create Pull Request" button to submit your pull request.
 
-![Create Pull Request]![image](https://github.com/SharanRP/Xplore/assets/136159249/d0c7383e-9dae-436d-af27-f5728ec90e6d)
+![Create Pull Request](https://github.com/SharanRP/Xplore/assets/136159249/d0c7383e-9dae-436d-af27-f5728ec90e6d)
 
 <hr>
 🎉 Congratulations! You've successfully created a pull request. The project maintainers will review your changes and provide feedback or merge them into the main repository.
 <hr>
+
 ## Adding Your Information
 
 Please add your name and registration number below:
