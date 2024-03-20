@@ -1,4 +1,2 @@
 Name : Registration number
-Sharan: 221080058
-Daksh Gohil: 231080027
-Thomas Shelby: 1921Birmingham
+Sharan: 22108005
