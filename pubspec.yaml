@@ -37,6 +37,7 @@ dependencies:
     sdk: flutter
   flutter_screenutil: ^5.9.3
   google_fonts: ^6.2.1
+  lottie: ^3.3.0
   shared_preferences: ^2.3.4
   velocity_x: ^4.2.1
 

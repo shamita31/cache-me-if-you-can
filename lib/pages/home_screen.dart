@@ -17,7 +17,13 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      body: Container(
+        decoration: BoxDecoration(
+            gradient: LinearGradient(colors: [Colors.green, Colors.yellow])),
+      ),
+      appBar: AppBar(
+        backgroundColor: Color(0xFF006400),
+      ),
       drawer: Drawer(
         child: ElevatedButton(
             onPressed: () {
