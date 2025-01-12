@@ -39,11 +39,9 @@ class _LoginPageState extends State<LoginPage> {
       SingleChildScrollView(
         child: isLoading
             ? Center(
-                child: Center(
                   child: CircularProgressIndicator(
                     color: Colors.green,
                   ),
-                ),
               )
             : Form(
                 key: formKey,
