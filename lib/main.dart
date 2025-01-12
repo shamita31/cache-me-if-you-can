@@ -3,8 +3,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:pawcrastinot/helper/helper_function.dart';
 import 'package:pawcrastinot/pages/Login_Page.dart';
-import 'package:pawcrastinot/pages/home_screen.dart';
+import 'package:pawcrastinot/pages/MY_home_Page.dart';
+import 'package:pawcrastinot/pages/home_Page.dart';
 import 'package:pawcrastinot/shared/webOptions.dart';
+import 'package:flutter/animation.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -39,13 +42,11 @@ class _MyAppState extends State<MyApp> {
   }
 
   getUserLoggedInStatus() async {
-    await HelperFunction.getUserLoggedInStatus().then((value){
-      if(value!=null){
+    await HelperFunction.getUserLoggedInStatus().then((value) {
+      if (value != null) {
         setState(() {
-                  _isSignedIn=value;
-          
+          _isSignedIn = value;
         });
-
       }
     });
   }
@@ -53,9 +54,9 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: _isSignedIn? HomePage() : LoginPage()
-      //home:LoginPage()
-    );
+        debugShowCheckedModeBanner: false,
+        home: _isSignedIn ? HomePage() : MyHomePage()
+        // home:LoginPage()
+        );
   }
 }

@@ -15,7 +15,7 @@ class AuthService {
       ))
           .user!;
 
-      if (user != null) {
+      if (user!= null) {
         return true;
       } else {
         return false;
