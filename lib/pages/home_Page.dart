@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:confetti/confetti.dart';
@@ -30,6 +31,30 @@ class _HomePageState extends State<HomePage> {
   double _hungerProgress = 0.7;
   double get happyProgress => _happyProgress;
   AuthService authService = AuthService();
+
+  void startDecay() {
+    Timer.periodic(Duration(minutes: 1), (timer) async {
+      DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .get();
+
+      double currentHappiness = documentSnapshot['happiness'] ?? 0.5;
+      double newHappiness = currentHappiness - 0.01;
+      if (newHappiness < 0) {
+        newHappiness = 0;
+      }
+
+      FirebaseFirestore.instance
+          .collection('users')
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .update({'happiness': newHappiness}).then((value) {
+        print("Happiness decayed to:$newHappiness");
+      }).catchError((err) {
+        print("failed to decay:$err");
+      });
+    });
+  }
 
   Future<void> updateHappinessProgress(double increment) async {
     try {
@@ -75,6 +100,7 @@ class _HomePageState extends State<HomePage> {
     // TODO: implement initState
     super.initState();
     fetchPetDetails();
+    startDecay();
   }
 
   @override
@@ -137,13 +163,30 @@ class _HomePageState extends State<HomePage> {
                         style: TextStyle(fontSize: 20),
                       ).pOnly(left: 10),
                       Expanded(
-                        child: LinearProgressIndicator(
-                          value: _happyProgress,
-                          backgroundColor: Colors.grey,
-                          minHeight: 15,
-                          valueColor:
-                              AlwaysStoppedAnimation<Color>(Colors.green),
-                        ).pOnly(left: 20, right: 20),
+                        child: Stack(
+                          children: [
+                            LinearProgressIndicator(
+                            value: _happyProgress,
+                            backgroundColor: Colors.grey,
+                            minHeight: 15,
+                            valueColor:
+                                AlwaysStoppedAnimation<Color>(Colors.green),
+                          ).pOnly(left: 20, right: 20),
+                          Positioned(
+                            left: happyProgress*MediaQuery.of(context).size.width-49,
+                            top:0,
+                            bottom: 0,
+                            child: Container(
+                              child: Text("${(_happyProgress*100).toStringAsFixed(1)}%",
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black
+                              ),
+                              ),
+                            ).pOnly(bottom: 1))
+                          ]
+                        ),
                       )
                     ],
                   ),
@@ -157,13 +200,29 @@ class _HomePageState extends State<HomePage> {
                         style: TextStyle(fontSize: 20),
                       ).pOnly(left: 10),
                       Expanded(
-                        child: LinearProgressIndicator(
-                          value: _hungerProgress,
-                          backgroundColor: Colors.grey,
-                          minHeight: 15,
-                          valueColor:
-                              AlwaysStoppedAnimation<Color>(Colors.green),
-                        ).pOnly(left: 20, right: 20),
+                        child: Stack(
+                          children: [
+                            LinearProgressIndicator(
+                            value: _hungerProgress,
+                            backgroundColor: Colors.grey,
+                            minHeight: 15,
+                            valueColor:
+                                AlwaysStoppedAnimation<Color>(Colors.green),
+                          ).pOnly(left: 20, right: 20),
+                          Positioned(
+                            left: happyProgress*MediaQuery.of(context).size.width-50,
+                            top:0,
+                            bottom: 0,
+                            child: Container(
+                              child: Text("${(_hungerProgress*100).toStringAsFixed(1)}%",
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black
+                              ),
+                              ),
+                            ).pOnly(bottom: 1))
+                    ]),
                       )
                     ],
                   ),
@@ -325,8 +384,10 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Color.fromRGBO(149, 249, 140, 1.00),
         actions: [
           IconButton(
-            onPressed: (){}
-            , icon: Icon(Icons.account_circle),iconSize: 30,)
+            onPressed: () {},
+            icon: Icon(Icons.account_circle),
+            iconSize: 30,
+          )
         ],
       ),
       drawer: Drawer(
