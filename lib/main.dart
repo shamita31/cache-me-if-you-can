@@ -56,7 +56,6 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: _isSignedIn ? HomePage() : MyHomePage()
-        // home:LoginPage()
         );
   }
 }

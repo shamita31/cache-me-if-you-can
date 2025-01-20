@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pawcrastinot/widgets/widgets.dart';
+import 'package:velocity_x/velocity_x.dart';
 import 'greeting_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:pawcrastinot/service/database_service.dart';
 
 class PetPickerPage extends StatefulWidget {
   @override
@@ -25,16 +28,33 @@ class _PetPickerPageState extends State<PetPickerPage> {
     });
   }
 
-  void _confirmSelection() {
+  void _confirmSelection() async {
     if (selectedPet == null) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Please select a pet to continue!')),
       );
     } else {
-      nextScreen(
-        context,
-        GreetingPage(selectedPet: selectedPet!),
-      );
+      final userId = FirebaseAuth.instance.currentUser!.uid;
+      try {
+        await DatabaseService(uid: userId).updatePetDetails(
+          selectedPet!,
+          "assets/${selectedPet!.toLowerCase()}.jpg",
+        );
+        showDialog(
+            context: context,
+            builder: (context) => Center(
+                  child: CircularProgressIndicator(),
+                ));
+        Future.delayed(Duration(seconds: 1), () {
+          Navigator.of(context).pop();
+          nextScreen(context, GreetingPage(selectedPet: selectedPet!));
+        });
+      } catch (err) {
+        print("Failed to update pet details: ${err}");
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content:
+                "failed to save pet details. please try again".text.make()));
+      }
     }
   }
 
