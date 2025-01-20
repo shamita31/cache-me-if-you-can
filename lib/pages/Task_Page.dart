@@ -32,17 +32,25 @@ class _TaskPageState extends State<TaskPage> {
   }
 
   Future<void> updateHappinessProgress(double increment) async {
-    final userId = FirebaseAuth.instance.currentUser!.uid;
-    final dbService = DatabaseService(uid: userId);
-    double currentProgress = await dbService.getPetHappiness() ?? 0.5;
+    try {
+      final userId = FirebaseAuth.instance.currentUser!.uid;
+      final dbService = DatabaseService(uid: userId);
+      DocumentSnapshot userDoc = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(userId)
+          .get();
+      double currentProgress = userDoc['happiness'] ?? 0.5;
 
-    double newProgress = (currentProgress + increment).clamp(0, 1);
+      double newProgress = (currentProgress + increment).clamp(0, 1);
 
-    await dbService.updatePetHappiness(newProgress);
+      await dbService.updatePetHappiness(newProgress);
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Task Completed! Happiness updated.')),
-    );
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Task Completed! Happiness updated.')),
+      );
+    } catch (err) {
+      print("cant update happy");
+    }
   }
 
   @override
@@ -84,7 +92,10 @@ class _TaskPageState extends State<TaskPage> {
                     await DatabaseService()
                         .completeAndRemoveTask(docSnap["id"], "Tasks");
                     confettiController?.play();
-                    await updateHappinessProgress(0.1);
+                    if (newValue == true) {
+                      await updateHappinessProgress(0.1);
+                    }
+                    setState(() {});
                     await Future.delayed(Duration(seconds: 2));
                     setState(() {});
                   } catch (e) {
